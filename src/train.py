@@ -70,7 +70,7 @@ class ProjectAgent:
 
         device = device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         # self.path = os.getcwd() + "/model.pt"
-        self.path = os.getcwd() + "/best_model.pt"
+        self.path = os.getcwd() + "/model8.pt"
 
         self.model = self.network({}, device)
         self.model.load_state_dict(torch.load(self.path, map_location=device))
@@ -141,15 +141,15 @@ class ProjectAgent:
                     'criterion': torch.nn.SmoothL1Loss(),
                     'learning_rate': 0.001,
                     'batch_size': 800,
-                    'gamma': 0.98,
+                    'gamma': 0.97,
                     'buffer_size': 100000,
                     'epsilon_min': 0.02,
                     'epsilon_max': 1.,
-                    'epsilon_decay_period': 20000,
+                    'epsilon_decay_period': 22000,
                     'epsilon_delay_decay': 100,
                     'gradient_steps': 3,
+                    'update_target_tau': 0.008,
                     'update_target_freq': 400,
-                    'update_target_tau': 0.005,
                     'update_target_strategy': 'replace'}
             
         else:
