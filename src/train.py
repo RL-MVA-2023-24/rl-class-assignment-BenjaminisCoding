@@ -69,8 +69,7 @@ class ProjectAgent:
     def load(self):
 
         device = device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        # self.path = os.getcwd() + "/model.pt"
-        self.path = os.getcwd() + "/model8.pt"
+        self.path = os.getcwd() + "/model.pt"
 
         self.model = self.network({}, device)
         self.model.load_state_dict(torch.load(self.path, map_location=device))
@@ -265,7 +264,7 @@ class ProjectAgent:
 
                 # save if model improved 
                 if val_score > val_before:
-                    print("better model")
+                    print("val score improved")
                     val_before = val_score
                     self.best_model = deepcopy(self.model).to(device)
                     self.save(os.getcwd())
